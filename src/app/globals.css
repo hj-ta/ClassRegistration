@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #f7f8fb;
+}
+
+html,
+body {
+  background-color: var(--color-bg);
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 접근성: 키보드 포커스 링 강조 */
+:focus-visible {
+  outline: 2px solid #3b6cf7;
+  outline-offset: 2px;
+}
+
+/* 에러 필드 강조용 흔들림 애니메이션 */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+.field-error-shake {
+  animation: shake 0.25s ease-in-out;
+}
