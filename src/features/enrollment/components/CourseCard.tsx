@@ -23,7 +23,7 @@ function formatDateRange(start: string, end: string) {
 export function CourseCard({ course, selected, onSelect }: CourseCardProps) {
   const remaining = course.maxCapacity - course.currentEnrollment;
   const isFull = remaining <= 0;
-  // 평가 기준 1번: 정원이 거의 다 찬 강의의 UX
+  //정원이 거의 다 찬 강의의 UX
   const isNearlyFull = !isFull && remaining <= 3;
 
   return (

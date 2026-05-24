@@ -1,7 +1,4 @@
-// 평가 기준 2번 - 타입 설계
 // 개인/단체를 discriminated union으로 분리해 컴파일러가 분기를 강제하도록 함.
-// 이렇게 하면 "단체 신청인데 group 필드가 없는 상태"가 타입 레벨에서 불가능해진다.
-
 export type CourseCategory = "development" | "design" | "marketing" | "business";
 
 export interface Course {

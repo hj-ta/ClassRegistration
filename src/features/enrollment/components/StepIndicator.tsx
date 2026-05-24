@@ -12,8 +12,8 @@ interface StepIndicatorProps {
   current: StepIndex;
 }
 
-// 평가 기준 4번 - 스텝 인디케이터
-// 데스크탑: 가로 / 모바일: 세로(점만 표시)는 안 하고, 가로지만 라벨이 축약되도록 유지
+// 스텝 인디케이터
+// 데스크탑: 가로 / 모바일: 세로는 안 하고, 가로지만 라벨이 축약되도록 유지
 export function StepIndicator({ current }: StepIndicatorProps) {
   return (
     <ol className="mb-8 flex items-center gap-2">

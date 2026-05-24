@@ -6,11 +6,7 @@ import {
   EnrollmentApiError,
 } from "./types";
 
-// 평가 기준 3번 - 안정성/예외 처리
-// 모든 API 호출은 EnrollmentApiError로 정규화한다.
-// 네트워크 에러(fetch 실패)와 비즈니스 에러(JSON 응답의 code)를 같은 인터페이스로 다루되,
-// `code === "NETWORK_ERROR"`로 명확히 구분 가능하게 한다.
-
+// 안정성/예외 처리
 async function parseErrorPayload(res: Response): Promise<ServerErrorPayload> {
   try {
     const data = (await res.json()) as ServerErrorPayload;

@@ -1,10 +1,6 @@
 import { z } from "zod";
 
-// 평가 기준 2번 - 폼 상태 관리 (통합 + 스텝별 스키마 분리)
-// 전체 폼은 하나의 schema로 정의하되, 스텝 전환 시 해당 스텝 필드만 검증한다.
-// `superRefine`으로 cross-field 검증(이메일 중복, 인원수=참가자수)을 처리한다.
-
-// 한국 전화번호: 010-1234-5678 / 01012345678 / +82-10-1234-5678 등 허용
+// 폼 상태 관리 (통합 + 스텝별 스키마 분리)
 const KOREAN_PHONE_REGEX = /^(\+?82[-\s]?|0)1[016789][-\s]?\d{3,4}[-\s]?\d{4}$/;
 
 export const participantSchema = z.object({
@@ -53,7 +49,7 @@ export const groupSchema = z
         message: `인원수(${val.headCount})와 참가자 명단 수(${val.participants.length})가 일치하지 않습니다`,
       });
     }
-    // 2) 참가자 이메일 중복 검사 (평가 기준 1번의 "이메일 중복 처리")
+    // 2) 참가자 이메일 중복 검사 
     const seen = new Map<string, number>();
     val.participants.forEach((p, idx) => {
       const key = p.email.trim().toLowerCase();
@@ -102,7 +98,7 @@ export const step3Schema = z.object({
   }),
 });
 
-// 전체 폼 스키마 (제출 직전 최종 검증용)
+// 전체 폼 스키마 (최종 검증용)
 export const fullEnrollmentSchema = z.discriminatedUnion("type", [
   z.object({
     courseId: z.string().min(1),

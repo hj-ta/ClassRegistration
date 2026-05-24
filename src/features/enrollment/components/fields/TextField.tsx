@@ -9,7 +9,7 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   required?: boolean;
 }
 
-// 평가 기준 1번 - 에러 표시 (높은 숙련도: 시각적 강조 + aria 속성)
+//  에러 표시 (시각적 강조 + aria 속성)
 // ref forwarding으로 부모(Step 컴포넌트)에서 첫 에러 필드로 focus 이동시킬 수 있게 한다.
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField({ label, hint, error, required, id, className, ...rest }, ref) {

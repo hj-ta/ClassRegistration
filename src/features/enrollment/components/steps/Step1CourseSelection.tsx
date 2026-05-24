@@ -7,7 +7,7 @@ import { useEnrollmentStore } from "../../store";
 import type { Course, CourseCategory, EnrollmentType } from "../../types";
 import { CATEGORY_LABELS } from "@/mocks/data";
 import { CourseCard } from "../CourseCard";
-import { ConfirmDialog } from "../ConfirmDialog";
+//import { ConfirmDialog } from "../ConfirmDialog";
 
 interface Step1Props {
   onNext: () => void;
@@ -24,7 +24,7 @@ const TABS: Array<{ key: CourseCategory | "all"; label: string }> = [
 export function Step1CourseSelection({ onNext }: Step1Props) {
   const [category, setCategory] = useState<CourseCategory | "all">("all");
   const [showError, setShowError] = useState(false);
-  const [pendingTypeSwitch, setPendingTypeSwitch] = useState<EnrollmentType | null>(null);
+  //const [pendingTypeSwitch, setPendingTypeSwitch] = useState<EnrollmentType | null>(null);
 
   const draft = useEnrollmentStore((s) => s.draft);
   const setCourse = useEnrollmentStore((s) => s.setCourse);
@@ -41,21 +41,14 @@ export function Step1CourseSelection({ onNext }: Step1Props) {
   const selectedCourse = draft.selectedCourse;
   const type = draft.type;
 
-  // 평가 기준 1번 - 단체→개인 전환 시, 입력된 group 데이터가 있으면 확인 후 초기화
+  // 단체에서 개인 전환 시 입력된 group 데이터가 있으면 확인 후 초기화
   const handleSelectType = (next: EnrollmentType) => {
-    if (next === type) return;
-    const hasGroupData = !!draft.group && (
-      !!draft.group.organizationName ||
-      !!draft.group.contactPerson ||
-      (draft.group.participants ?? []).some((p) => p.name || p.email)
-    );
-    if (next === "personal" && hasGroupData) {
-      setPendingTypeSwitch(next);
-      return;
-    }
     setType(next);
     if (next === "personal") clearGroup();
   };
+
+
+
 
   const confirmTypeSwitch = () => {
     if (pendingTypeSwitch) {
@@ -202,16 +195,6 @@ export function Step1CourseSelection({ onNext }: Step1Props) {
         </button>
       </div>
 
-      <ConfirmDialog
-        open={pendingTypeSwitch !== null}
-        title="단체 신청 정보가 삭제됩니다"
-        description="개인 신청으로 변경하면 입력하신 단체명, 인원수, 참가자 명단이 모두 삭제됩니다. 계속하시겠습니까?"
-        confirmLabel="개인 신청으로 변경"
-        cancelLabel="취소"
-        onConfirm={confirmTypeSwitch}
-        onCancel={() => setPendingTypeSwitch(null)}
-        danger
-      />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { Course, EnrollmentType, Applicant, GroupInfo, Participant } from "./types";
 
-// 평가 기준 2번 - 스텝 간 데이터 공유
+// 스텝 간 데이터 공유
 // Context보다 zustand를 택한 이유:
 //  - 셀렉터 단위 구독으로 불필요한 리렌더를 막을 수 있다 (예: 스텝 인디케이터는 step만 구독)
 //  - persist 미들웨어로 "임시 저장"(선택 구현 1번)을 한 줄로 처리할 수 있다
@@ -36,7 +36,7 @@ interface EnrollmentState {
   setApplicant: (applicant: Applicant) => void;
   setGroup: (group: GroupInfo) => void;
   setAgreedToTerms: (agreed: boolean) => void;
-  // 단체 → 개인 전환 시 group 데이터 초기화 (평가 기준 1번)
+  // 단체 → 개인 전환 시 group 데이터 초기화 
   clearGroup: () => void;
   // 헤드카운트 변경 시 참가자 배열 길이 맞추기
   syncParticipantsLength: (headCount: number) => void;

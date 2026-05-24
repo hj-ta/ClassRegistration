@@ -13,8 +13,8 @@ interface ConfirmDialogProps {
   danger?: boolean;
 }
 
-// 평가 기준 1번 - 조건부 필드 전환 (높은 숙련도: 확인 대화상자)
-// 단체 → 개인 전환처럼 데이터 손실이 일어나는 행동 전에 사용자 의도를 한 번 더 확인.
+// 조건부 필드 전환 
+// 단체 → 개인 전환처럼 전에 한 번 더 확인
 export function ConfirmDialog({
   open,
   title,

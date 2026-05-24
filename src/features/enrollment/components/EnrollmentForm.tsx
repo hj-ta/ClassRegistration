@@ -9,7 +9,7 @@ import { Step2ApplicantInfo } from "./steps/Step2ApplicantInfo";
 import { Step3Confirmation } from "./steps/Step3Confirmation";
 import { SuccessScreen } from "./SuccessScreen";
 
-// 평가 기준 2번 - 스텝 라우팅 책임은 이 컴포넌트가 가진다.
+// 스텝 라우팅 책임은 이 컴포넌트가 가진다.
 // 각 Step 컴포넌트는 onNext/onPrev/onEdit prop만 받아 라우팅을 모른다.
 // 5단계로 늘어나도 이 컴포넌트와 store의 TOTAL_STEPS만 손대면 된다.
 export function EnrollmentForm() {
@@ -32,7 +32,7 @@ export function EnrollmentForm() {
     }
   }, [step, draft, setStep]);
 
-  // 평가 기준 - 선택 구현 "이탈 방지"
+  // 이탈 방지
   // 입력 데이터가 있고 아직 제출되지 않았을 때 새로고침/닫기 시 경고.
   useEffect(() => {
     if (success) return;

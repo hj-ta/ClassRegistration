@@ -16,11 +16,11 @@ interface Step2Props {
   onNext: () => void;
 }
 
-// 평가 기준 2번 - 컴포넌트/검증 분리
+//  컴포넌트/검증 분리
 // - 폼 상태: react-hook-form (비제어 → 입력마다 리렌더 없음)
 // - 검증: zod 스키마 (UI와 완전 분리)
 // - 데이터 영속화: 마운트 시 store.draft → 폼 default,
-//   submit 성공 시 폼 값 → store 로 다시 쓰기 (단방향 흐름)
+//   submit 성공 시 폼 값 → store 로 다시 쓰기 
 export function Step2ApplicantInfo({ onPrev, onNext }: Step2Props) {
   const draft = useEnrollmentStore((s) => s.draft);
   const setApplicant = useEnrollmentStore((s) => s.setApplicant);
@@ -68,9 +68,9 @@ export function Step2ApplicantInfo({ onPrev, onNext }: Step2Props) {
   const form = useForm<Step2Values>({
     resolver: zodResolver(step2Schema) as Resolver<Step2Values>,
     defaultValues,
-    mode: "onBlur", // 평가 기준 1번 - blur 시 개별 검증
+    mode: "onBlur", //  blur 시 개별 검증
     reValidateMode: "onChange",
-    shouldFocusError: true, // 평가 기준 1번 - 첫 에러 필드로 포커스 이동
+    shouldFocusError: true, // 첫 에러 필드로 포커스 이동
   });
 
   const {
