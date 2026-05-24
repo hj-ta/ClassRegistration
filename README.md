@@ -36,20 +36,21 @@ npm run dev
 http://localhost:3000
 
 ## 프로젝트 구조 설명
+```text
 src/
-├── app/                  # Next.js 진입점
+├── app/                         # Next.js 진입점
 ├── features/enrollment/
-│   ├── types.ts          # 도메인 타입
-│   ├── schemas.ts        # Zod 검증 스키마
-│   ├── store.ts          # Zustand store
-│   ├── api.ts            # fetch + 에러 처리
+│   ├── types.ts                 # 도메인 타입
+│   ├── schemas.ts               # Zod 검증 스키마
+│   ├── store.ts                 # Zustand store
+│   ├── api.ts                   # fetch + 에러 처리
 │   └── components/
-│       ├── EnrollmentForm.tsx    # 스텝 라우팅
-│       ├── steps/                # 각 스텝 컴포넌트
-│       └── fields/               # 재사용 폼 필드
-└── mocks/                # MSW 핸들러
+│       ├── EnrollmentForm.tsx   # 스텝 라우팅
+│       ├── steps/               # 각 스텝 컴포넌트
+│       └── fields/              # 재사용 폼 필드
+└── mocks/                       # MSW 핸들러
 
-**핵심 원칙**: UI에 의존하지 않는 4개 모듈(`types`, `schemas`, `store`, `api`)을 분리. 컴포넌트는 이 4개를 조립할 뿐이다. 스텝이 늘어나도 영향 범위가 좁음.
+UI에 의존하지 않는 4개 모듈(`types`, `schemas`, `store`, `api`)을 분리. 컴포넌트는 이 4개를 조립. 스텝이 늘어나도 영향 범위가 좁음.
 
 ## 요구사항 해석 및 가정
 
