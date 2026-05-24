@@ -13,6 +13,8 @@ export function MSWProvider({ children }: { children: ReactNode }) {
       await worker.start({
         onUnhandledRequest: "bypass",
         serviceWorker: { url: "/mockServiceWorker.js" },
+      }).catch(() => {
+        // 이미 실행 중이면 무시 (StrictMode 두 번 실행 대응)
       });
       if (!cancelled) setReady(true);
     })();
