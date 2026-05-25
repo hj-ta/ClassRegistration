@@ -75,9 +75,9 @@ UI에 의존하지 않는 4개 모듈(`types`, `schemas`, `store`, `api`)을 분
 
 스텝 내부는 RHF, 스텝 간 공유는 Zustand로 분리했다.
 
-[Step1 폼] ─submit─► store에 commit
-[Step2 폼] ─submit─► store에 commit
-[Step3]    ─submit─► store 전체를 최종 검증 후 POST
+- [Step1 폼] ─submit─► store에 commit
+- [Step2 폼] ─submit─► store에 commit
+- [Step3 ]─submit─► store 전체를 최종 검증 후 POST
 
 **왜 두 개를 같이 쓰나**
 
